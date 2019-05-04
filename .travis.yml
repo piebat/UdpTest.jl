@@ -5,7 +5,7 @@ codecov: true
 coveralls: true
 
 script:
-  - julia -e 'using Pkg; Pkg.build(); Pkg.test(coverage=true)' # Pkg.build(; verbose = true) for Julia 1.1 and up
+  - julia -e 'using Pkg; Pkg.build(); Pkg.test("UdpTest",coverage=true)' # Pkg.build(; verbose = true) for Julia 1.1 and up
 after_success:
   - julia -e 'using Pkg; Pkg.add("Documenter")'
   - julia -e 'using Pkg; import UdpTest; joinpath(dirname(pathof(UdpTest)), "..");

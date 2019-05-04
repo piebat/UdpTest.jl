@@ -11,7 +11,5 @@ makedocs(
 # for more information.
 deploydocs(
     repo = "https://github.com/piebat/UdpTest.jl.git",
-    branch = "gh-pages",
-    julia = "1.0.3",
-    osname = "linux"
+    branch = "gh-pages"
 )
