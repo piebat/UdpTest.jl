@@ -3,7 +3,6 @@ using UdpTest
 
 makedocs(
     sitename = "UdpTest",
-    format = Documenter.html(),
     modules = [UdpTest]
 )
 
