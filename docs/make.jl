@@ -10,6 +10,6 @@ makedocs(
 # See "Hosting Documentation" and deploydocs() in the Documenter manual
 # for more information.
 deploydocs(
-    repo = "github.com/piebat/UdpTest.jl.git",
+    repo = "github.com/piebat/udpcstest.jl.git",
     branch = "gh-pages"
 )
