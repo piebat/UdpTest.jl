@@ -1,11 +1,21 @@
-codecov: true
 coveralls: true
 language: julia
+os:
+  - linux
 julia:
-  - 1.0.3
-script:
-  - julia -e 'using Pkg; Pkg.build(); Pkg.test("UdpTest",coverage=true)' # Pkg.build(; verbose = true) for Julia 1.1 and up
+  - 1.0
+notifications:
+  email: false
 after_success:
-  - julia -e 'using Pkg; Pkg.add("Documenter")'
-  - julia -e 'using Pkg; import UdpTest; joinpath(dirname(pathof(UdpTest)), "..");
-              include(joinpath("docs", "make.jl"))'
+  - julia -e 'using Pkg; cd(Pkg.dir("UdpTest")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())’;
+
+jobs:
+  include:
+    - stage: "Documentation"
+    julia: 1.0
+    os: linux
+    script:
+        - julia --project=docs/ -e 'using Pkg; Pkg.instantiate();
+                                    Pkg.develop(PackageSpec(path=pwd()))'
+        - julia --project=docs/ docs/make.jl
+after_success: skip
