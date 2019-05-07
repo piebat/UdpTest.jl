@@ -5,7 +5,7 @@ Julia Programming PhD exam
 
 | **Documentation** | **Build Status** |
 |---------------|--------------|
-|[![][docs-stable-img]][docs-stable-url] <br/> [![][docs-latest-img]][docs-dev-url] | [![Build Status][travis-img]][travis-url]  [![Coverage Status][codecov-img]][codecov-url] <br/> Linux |
+|[![][docs-stable-img]][docs-stable-url] <br/> [![][docs-latest-img]][docs-dev-url] | [![Build Status][travis-img]][travis-url]
 
 ## Documentation
 
@@ -14,11 +14,9 @@ Julia Programming PhD exam
 
 [docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-dev-url]: https://github.com/piebat/UdpTest.jl.git/dev
-[docs-stable-url]: https://github.com/piebat/UdpTest.jl.git/stable
+[docs-dev-url]: https://piebat.github.io/UdpTest.jl/dev
+[docs-stable-url]: https://piebat.github.io/UdpTest.jl/stable
 
 [travis-img]: https://travis-ci.org/piebat/UdpTest.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/piebat/UdpTest.jl
 
-[codecov-img]: https://coveralls.io/repos/github/piebat/UdpTest.jl/badge.svg?branch=master
-[codecov-url]: https://coveralls.io/github/piebat/UdpTest.jl?branch=master
