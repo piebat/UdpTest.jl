@@ -14,8 +14,8 @@ Julia Programming PhD exam
 
 [docs-latest-img]: https://img.shields.io/badge/docs-latest-blue.svg
 [docs-stable-img]: https://img.shields.io/badge/docs-stable-blue.svg
-[docs-dev-url]: https://github.com/piebat/UdpTest.jl.git/dev
-[docs-stable-url]: https://github.com/piebat/UdpTest.jl.git/stable
+[docs-dev-url]: https://piebat.github.io/UdpTest.jl/dev
+[docs-stable-url]: https://piebat.github.io/UdpTest.jl/stable
 
 [travis-img]: https://travis-ci.org/piebat/UdpTest.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/piebat/UdpTest.jl
