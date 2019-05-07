@@ -5,7 +5,7 @@ Julia Programming PhD exam
 
 | **Documentation** | **Build Status** |
 |---------------|--------------|
-|[![][docs-stable-img]][docs-stable-url] <br/> [![][docs-latest-img]][docs-dev-url] | [![Build Status][travis-img]][travis-url]  [![Coverage Status][codecov-img]][codecov-url] <br/> Linux |
+|[![][docs-stable-img]][docs-stable-url] <br/> [![][docs-latest-img]][docs-dev-url] | [![Build Status][travis-img]][travis-url]
 
 ## Documentation
 
