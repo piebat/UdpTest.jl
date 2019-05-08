@@ -2,6 +2,7 @@
 Julia Programming PhD exam
 
 [![Coverage Status](https://coveralls.io/repos/github/piebat/UdpTest.jl/badge.svg?branch=master)](https://coveralls.io/github/piebat/UdpTest.jl?branch=master)
+[![codecov](https://codecov.io/gh/piebat/UdpTest.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/piebat/UdpTest.jl)
 
 | **Documentation** | **Build Status** |
 |---------------|--------------|
