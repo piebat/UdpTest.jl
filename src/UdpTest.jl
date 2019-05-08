@@ -36,11 +36,11 @@ function show_info(message, remote, prefix)
     end
 end
 
-"""
+'''
 function server(port::Int)
     start to listen on port and reply any arrived message
 end
-"""
+'''
 
 function server(port)
     bind(sock , IPv4(0), port)

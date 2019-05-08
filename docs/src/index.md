@@ -1,4 +1,8 @@
 # UdpTest.jl
 
 Documentation for UdpTest.jl
-New
+
+```@autodocs
+Modules = [UdpTest]
+Order   = [:function, :type]
+```
