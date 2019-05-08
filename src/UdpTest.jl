@@ -1,4 +1,5 @@
 """
+module UdpTest
     Simple Porting from Python Udp-Test Module
 """
 module UdpTest
@@ -41,7 +42,6 @@ function server(port::Int)
     start to listen on port and reply any arrived message
 end
 """
-
 function server(port)
     bind(sock , IPv4(0), port)
 @async while true
@@ -51,11 +51,11 @@ function server(port)
             send(sock,remote,port,message)
         end
 end
+
 """
-function client(host::String, port::Int)
+    function client(host::String, port::Int)
     Ask for a message to send to the host on the port.
         show the received replay
-end
 """
 function client(host, port)
     bind(sock, ip"0.0.0.0", port)
