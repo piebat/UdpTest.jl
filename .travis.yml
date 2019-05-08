@@ -25,4 +25,5 @@ jobs:
                                     Pkg.develop(PackageSpec(path=pwd()))'
         - julia --project=docs/ docs/make.jl
       after_success:
-        - julia -e 'using Pkg; cd(Pkg.dir("UdpTest")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())';
+        - julia -e 'using Pkg; import UdpTest; joinpath(dirname(pathof(UdpTest)), "..");
+                                    Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())';
