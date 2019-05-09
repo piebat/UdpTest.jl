@@ -1,8 +1,8 @@
+module UdpTest
 """
 module UdpTest
     Simple Porting from Python Udp-Test Module
 """
-module UdpTest
 using Sockets
 
 import Base.show
