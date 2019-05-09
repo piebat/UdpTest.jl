@@ -1,7 +1,7 @@
 name = "UdpTest"
 uuid = "387cc890-6e75-11e9-23b0-2507e85f0216"
 authors = ["Pietro Battistoni <pietro@battistoni.it>"]
-version = "0.1.0"
+version = "0.1.1"
 
 [deps]
 Sockets = "6462fe0b-24de-5631-8697-dd941f90decc"
