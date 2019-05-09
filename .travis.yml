@@ -17,11 +17,6 @@ notifications:
 
 jobs:
   include:
-    - stage: "test"
-      julia: 1.0
-      os: linux
-      script:
-        - julia -e 'using Pkg; import UdpTest; joinpath(dirname(pathof(UdpTest)), "../test"); include("test");
     - stage: "Documentation"
       julia: 1.0
       os: linux
