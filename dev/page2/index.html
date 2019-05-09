@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Codice · UdpTest</title><link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" rel="stylesheet" type="text/css"/><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link href="../assets/documenter.css" rel="stylesheet" type="text/css"/></head><body><nav class="toc"><h1>UdpTest</h1><select id="version-selector" onChange="window.location.href=this.value" style="visibility: hidden"></select><form class="search" id="search-form" action="../search/"><input id="search-query" name="q" type="text" placeholder="Search docs"/></form><ul><li><a class="toctext" href="../">UdpTest.jl</a></li><li class="current"><a class="toctext" href>Codice</a><ul class="internal"><li><a class="toctext" href="#Python-1">Python</a></li><li><a class="toctext" href="#Julia-1">Julia</a></li></ul></li></ul></nav><article id="docs"><header><nav><ul><li><a href>Codice</a></li></ul><a class="edit-page" href="https://github.com/piebat/UdpTest.jl/blob/master/docs/src/page2.md"><span class="fa"></span> Edit on GitHub</a></nav><hr/><div id="topbar"><span>Codice</span><a class="fa fa-bars" href="#"></a></div></header><h1><a class="nav-anchor" id="Codice-1" href="#Codice-1">Codice</a></h1><h2><a class="nav-anchor" id="Python-1" href="#Python-1">Python</a></h2><pre><code class="language-Python">import sys
+import socket
+import click
+
+VERSION = &quot;0.1.1&quot;
+
+def show_info(message, remote, prefix):
+    if not sys.version.startswith(&quot;2&quot;):
+        message = message.decode(&quot;utf-8&quot;)
+    info = &quot;{prefix} {remote_ip} : {remote_port} ==&gt; {message}&quot;.format(
+        prefix=prefix,
+        remote_ip=remote[0],
+        remote_port=remote[1],
+        message=message,
+        )
+    click.echo(info)
+
+
+@click.group()
+def test():
+    pass
+
+
+@test.command()
+@click.option(&quot;-p&quot;, &quot;--port&quot;, type=int, default=5005)
+def server(port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.bind((&#39;0.0.0.0&#39;, port))
+    while True:
+        message, remote = sock.recvfrom(1024*64)
+        show_info(message, remote, &quot;Get a message from&quot;)
+        sock.sendto(message, remote)
+
+
+@test.command()
+@click.option(&quot;-h&quot;, &quot;--host&quot;, default=&quot;127.0.0.1&quot;)
+@click.option(&quot;-p&quot;, &quot;--port&quot;, type=int, default=5005)
+@click.option(&quot;-l&quot;, &quot;--local-port&quot;, type=int, default=0)
+def client(host, port, local_port):
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    if local_port:
+        sock.bind((&#39;0.0.0.0&#39;, local_port))
+    while True:
+        line = input(&quot;Send message: &quot;)
+        sock.sendto(line.encode(&quot;utf-8&quot;), (host, port))
+        message, remote = sock.recvfrom(1024*64)
+        show_info(message, remote, &quot;Received reply from&quot;)
+
+
+
+if __name__ == &quot;__main__&quot;:
+    test()
+</code></pre><h2><a class="nav-anchor" id="Julia-1" href="#Julia-1">Julia</a></h2><pre><code class="language-Julia">#######################################
+# UdpTest module name
+#######################################
+module UdpTest
+    using Sockets
+    import Base.show
+
+    export server, client, show_info
+
+    function __init__()
+        inizia()
+    end
+
+    function inizia()
+        println(&quot;Init&quot;)
+        global sock = UDPSocket()
+        global port=5005
+        for a in ARGS
+            b=split(a)
+            if occursin(&quot;-p&quot;,a) || occursin(&quot;--port&quot;,a)
+                try
+                    port=split(a)[2]
+                catch
+                    println(&quot;Using defalut port $port&quot;)
+                end
+            end
+
+        end
+    end
+
+    function show_info(message, remote, prefix)
+        try
+            prefix=prefix
+            remote_ip=remote
+            remote_port=&quot;-&quot;#remote[2]
+            message=message
+            info = &quot;$prefix $remote_ip : $remote_port ==&gt; $message&quot;
+            println(info)
+            return 0
+        catch e
+            println(e)
+            return 1
+        end
+    end
+&quot;&quot;&quot;
+function server(port::Int)
+    start to listen on port and reply any Received message
+&quot;&quot;&quot;
+    function server(port)
+        try
+            bind(sock , IPv4(0), port)
+        @async while true
+                    remote, message = recvfrom(sock)
+                    println(&quot;messaggio ricevuto $remote&quot;)
+                    show_info(message, remote, &quot;Get a message from&quot;)
+                    send(sock,remote,port,message)
+                end
+        catch e
+            println(e)
+            return 1
+        end
+    end
+
+&quot;&quot;&quot;
+    function client(host::String, port::Int)
+    require a message to send to the HOST on the PORT.
+        Eventually show the received replay.
+&quot;&quot;&quot;
+    function client(host, port)
+        try
+            bind(sock, ip&quot;0.0.0.0&quot;, port)
+            host_ip = getaddrinfo(host)
+            while true
+                print(&quot;Send Message: &quot;)
+                line = readline()
+                send(sock,host_ip,port,line)
+                remote, line = recvfrom(sock)
+                show_info(line, host_ip, &quot;Received reply from&quot;)
+            end
+        catch e
+            println(e)
+            return 1
+        end
+    end
+
+end # module
+</code></pre><footer><hr/><a class="previous" href="../"><span class="direction">Previous</span><span class="title">UdpTest.jl</span></a></footer></article></body></html>
