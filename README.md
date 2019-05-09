@@ -27,10 +27,3 @@ The client application will require to insert a message that will be sent to the
 
 [travis-img]: https://travis-ci.org/piebat/UdpTest.jl.svg?branch=master
 [travis-url]: https://travis-ci.org/piebat/UdpTest.jl
-
-
-This code is just to demostrate the porting from a Python
-Udp-Test module to a Julia one, with CI use.
-The Module itself is very simple.
-You can run a Server and a Client on same or different machine.
-The client application will require to insert a message that will be sent to the server, and will show the server replay.
