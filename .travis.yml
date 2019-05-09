@@ -1,6 +1,4 @@
 language: julia
-env:
-  TRAVIS_TAG = "v0.1.1"
 os:
   - linux
 
@@ -20,6 +18,7 @@ jobs:
   env:
   global:
     - DISABLE_AMEND_COVERAGE_FROM_SRC=yes
+    - TRAVIS_TAG = "v0.1.1"
   include:
     - stage: "Documentation"
       julia: 1.0
