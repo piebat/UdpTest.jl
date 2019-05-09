@@ -26,5 +26,5 @@ jobs:
         - julia --project=docs/ docs/make.jl
       after_success:
         - julia -e 'using Pkg; Pkg.test("UdpTest", coverage=true)'
-        - julia -e 'using Pkg; import UdpTest; joinpath(dirname(pathof(UdpTest),".."));
+        - julia -e 'using Pkg; import UdpTest; joinpath(pathof(UdpTest),"..")ß;
                                     Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())';
