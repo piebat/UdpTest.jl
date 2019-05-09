@@ -5,7 +5,7 @@ module UdpTest
     using Sockets
     import Base.show
 
-    export show_info, server, client, inizia, sock
+    export server, client, show_info
 
     function __init__()
         inizia()
@@ -24,11 +24,11 @@ module UdpTest
                     println("Using defalut port $port")
                 end
             end
+
         end
     end
 
     function show_info(message, remote, prefix)
-        println("remote = $remote")
         try
             prefix=prefix
             remote_ip=remote
@@ -44,32 +44,42 @@ module UdpTest
     end
 """
 function server(port::Int)
-    start to listen on port and reply any arrived message
+    start to listen on port and reply any Received message
 """
     function server(port)
-        bind(sock , IPv4(0), port)
-    @async while true
-                remote, message = recvfrom(sock)
-                println("messaggio ricevuto $remote")
-                show_info(message, remote, "Get a message from")
-                send(sock,remote,port,message)
-            end
+        try
+            bind(sock , IPv4(0), port)
+        @async while true
+                    remote, message = recvfrom(sock)
+                    println("messaggio ricevuto $remote")
+                    show_info(message, remote, "Get a message from")
+                    send(sock,remote,port,message)
+                end
+        catch e
+            println(e)
+            return 1
+        end
     end
 
 """
     function client(host::String, port::Int)
-    Ask for a message to send to the host on the port.
-        show the received replay
+    require a message to send to the HOST on the PORT.
+        Eventually show the received replay.
 """
     function client(host, port)
-        bind(sock, ip"0.0.0.0", port)
-        host_ip = getaddrinfo(host)
-        while true
-            print("Send Message: ")
-            line = readline()
-            send(sock,host_ip,port,line)
-            remote, line = recvfrom(sock)
-            show_info(line, host_ip, "Received reply from")
+        try
+            bind(sock, ip"0.0.0.0", port)
+            host_ip = getaddrinfo(host)
+            while true
+                print("Send Message: ")
+                line = readline()
+                send(sock,host_ip,port,line)
+                remote, line = recvfrom(sock)
+                show_info(line, host_ip, "Received reply from")
+            end
+        catch e
+            println(e)
+            return 1
         end
     end
 
