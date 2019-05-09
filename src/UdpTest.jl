@@ -1,10 +1,11 @@
+#######################################
+# UdpTest
+#
+######################################
+
 module UdpTest
 using Sockets
 import Base.show
-"""
-module UdpTest
-    Simple Porting from Python Udp-Test Module
-"""
 export show_info, server, client, runn, inizia, sock
 
 
