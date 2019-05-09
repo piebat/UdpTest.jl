@@ -30,4 +30,5 @@ jobs:
       after_success:
         - julia -e 'using Pkg; Pkg.test("UdpTest", coverage=true)'
         - julia -e 'using Pkg; import UdpTest; joinpath(pathof(UdpTest),"..");
-                                    Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())';
+                                    Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder());
+                                    Coveralls.submit(Coveralls.process_folder())'
