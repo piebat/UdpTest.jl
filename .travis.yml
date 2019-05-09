@@ -1,7 +1,11 @@
 language: julia
 os:
   - linux
-
+env:
+  global:
+    - DISABLE_AMEND_COVERAGE_FROM_SRC=yes
+    - TRAVIS_TAG = "v0.1.1"
+ 
 julia:
   - 1.0
 notifications:
@@ -15,11 +19,7 @@ notifications:
 #  - julia -e 'if VERSION >= v"0.7.0-" using Pkg end; cd(Pkg.dir("OpenStreetMapX")); Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())';
 
 jobs:
-  env:
-  global:
-    - DISABLE_AMEND_COVERAGE_FROM_SRC=yes
-    - TRAVIS_TAG = "v0.1.1"
-  include:
+ include:
     - stage: "Documentation"
       julia: 1.0
       os: linux
