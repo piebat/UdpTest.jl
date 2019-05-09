@@ -1,7 +1,7 @@
 # Udp Test module .jl
 Julia Programming PhD exam
 
-[![Coverage Status](https://coveralls.io/repos/github/piebat/UdpTest.jl/badge.svg?branch=master)](https://coveralls.io/github/piebat/UdpTest.jl?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/piebat/UdpTest.jl/badge.svg)](https://coveralls.io/github/piebat/UdpTest.jl)
 [![codecov](https://codecov.io/gh/piebat/UdpTest.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/piebat/UdpTest.jl)
 
 | **Documentation** | **Build Status** |
