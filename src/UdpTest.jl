@@ -1,5 +1,5 @@
 #######################################
-# UdpTest
+# UdpTest module name
 #######################################
 module UdpTest
     using Sockets
