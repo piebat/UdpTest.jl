@@ -1,6 +1,6 @@
 language: julia
 en:
-  TRAVIS_TAG = "C"
+  TRAVIS_TAG = ""
 os:
   - linux
 
