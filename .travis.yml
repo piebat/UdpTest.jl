@@ -3,9 +3,8 @@ os:
   - linux
 env:
   global:
+    - TRAVIS_TAG="v0.1.1"
     - DISABLE_AMEND_COVERAGE_FROM_SRC=yes
-    - TRAVIS_TAG = "v0.1.1"
- 
 julia:
   - 1.0
 notifications:
